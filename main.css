@@ -1,0 +1,81 @@
+#title {
+  color: red;
+  background-color: aqua;
+}
+
+body {
+  background-color: antiquewhite;
+}
+
+.paragraph {
+  font-family: monospace;
+  font-size: 30px;
+}
+
+#content > a {
+  text-decoration: none;
+}
+
+#content + p {
+  color: red !important;
+}
+
+#content ~ p {
+  color: blue;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: red;
+  color: white;
+  box-shadow: 0 2px 3px black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* #content2 p:nth-child(-n + 3){
+    color: red;
+} */
+
+#content2 p:not(#content2-p1):not(#content2-p3) {
+  color: red;
+}
+
+#hw {
+  display: inline-block;
+  transform-origin: center;
+  transition: all 1s ease;
+  animation: hw-animation 1s ease infinite;
+}
+
+#hw:hover {
+  color: white;
+  letter-spacing: 5px;
+}
+
+#hw::before {
+  content: "A";
+  color: red;
+}
+
+#hw::after {
+  content: "!!!";
+  color: magenta;
+}
+
+@keyframes hw-animation {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
