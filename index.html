@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        button {
+            position: relative;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            background-color: rgb(248, 50, 50);
+            color: white;
+            box-shadow: 0 2px black;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .ripple {
+            overflow: hidden;
+        }
+
+        .ripple-effect {
+            transform: scale(0);
+            opacity: 1;
+            border-radius: 100%;
+            background-color: rgba(255, 255, 255, .7);
+            position: absolute;
+            animation: ripple-animation 1s ease 1;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="margin: 30px;">
+        <button class="ripple">settings</button>
+    </div>
+
+    <script>
+        function createRippleEffect(e) {
+            const button = e.currentTarget
+
+            if (button.querySelector('.ripple-effect')) {
+                button.querySelector('.ripple-effect').remove()
+            }
+
+            const mouseX = e.clientX, mouseY = e.clientY
+
+            const bound = button.getBoundingClientRect()
+
+            const diameter = Math.max(bound.width, bound.height)
+
+            const span = document.createElement('span')
+            span.style.width = span.style.height = `${diameter}px`
+            span.style.left = `${mouseX - bound.left - diameter / 2}px`
+            span.style.top = `${mouseY - bound.top - diameter / 2}px`
+            span.classList.add('ripple-effect')
+
+            button.appendChild(span)
+        }
+
+        document.querySelectorAll('.ripple').forEach(element => {
+            element.addEventListener('click', createRippleEffect)
+        })
+
+        // const x = new Promise((resolve, reject) => {
+        //     setTimeout(resolve, 10000)
+        // })
+
+        // console.log(x);
+        // x.then(() => console.log('10 seconds', x))
+        // console.log('10');
+
+        // function wait(seconds) {
+        //     return new Promise(resolve => setTimeout(() => resolve('55555'), seconds * 1000))
+        // }
+
+        // async function run() {
+        //     console.log('run1')
+        //     const x = await wait(10)
+        //     console.log(x)
+        //     wait(10).then(x => console.log(x))
+        // }
+
+        // run()
+
+        async function callApi(){
+            const x = await fetch('https://jsonplaceholder.typicode.com/todos/')
+            const result = await x.json()
+            console.log(result);
+        }
+
+        callApi()
+
+        // function clicked(){
+        //     alert('button clicked')
+        // }
+
+        // function getSomething() {
+        //     for (let i = 0; i < 100; i++) {
+        //         console.log(i);
+        //     }
+        // }
+        // getSomething()
+
+        // const add = x => x + 1
+
+        // console.log(add(3));
+
+        // let x = 'Hello, World!'
+        // console.log(x.substr(-3));
+
+        // for (let index = 0; index < 1000; index++) {
+        //     console.log(('0000' + index).substr(-4));
+        // }
+
+        // let b = 5
+        // let c = 99
+
+        // console.log('b * c = ' + (b * c));
+        // console.log(`b * c = ${b * c}`);
+
+        // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        // console.log(arr[0]);
+
+        // let person = {
+        //     name: 'John',
+        //     age: 99,
+        // }
+
+        // let arrPerson = [
+        //     { name: 'John', age: 99 },
+        //     { name: 'Bob', age: 29 }
+        // ]
+
+        // arrPerson.forEach((v, i) => {
+        //     console.log(i, v);
+        // })
+
+        // console.log(arr.map(v => v * 2));
+        // console.log(arr.reduce((acc, v) => acc + v));
+    </script>
+</body>
+
+</html>
